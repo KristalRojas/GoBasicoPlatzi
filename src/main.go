@@ -29,4 +29,60 @@ func main() {
 	const baseCuadrado = 10
 	areaCuadrado := baseCuadrado * baseCuadrado
 	println("Area cuadrado es: ", areaCuadrado)
+	x := 10
+	y := 50
+
+	//Suma
+	result := x + y
+	println("Suma: ", result)
+
+	//Resta
+	result = y - x
+	println("Resta: ", result)
+
+	//Multiplicacion
+	result = x * y
+	println("Multiplicacion: ", result)
+
+	//Division
+	result = y / x
+	println("Division: ", result)
+
+	//Modulo
+	result = y % x
+	println("Modulo: ", result)
+
+	// Incremental
+	x++
+	println("Incremental: ", x)
+
+	// Decremental
+	x--
+	println("Decremental: ", x)
+
+	//RETOS
+	//RECTANGULO, TRAPECIO Y DE UN CIRCULO
+
+	//Area Rectangulo
+	const largo = 2
+	const ancho = 4
+
+	resultArea := largo * ancho
+
+	println("Area Rectangulo: ", resultArea)
+
+	//Area Trapecio
+	baseBaja := 10
+	baseAlta := 4
+
+	resultArea = ((baseBaja + baseAlta) * altura) / 2
+	println("Area Trapecio: ", resultArea)
+
+	//Area Circulo
+	var radio = 5
+
+	var resultCircle float64
+	resultCircle = (pi * (float64(radio) * float64(radio)))
+
+	println("Area Circulo: ", resultCircle)
 }
