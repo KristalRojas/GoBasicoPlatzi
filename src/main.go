@@ -3,8 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	modulo := 5 % 2
-	switch modulo {
+	switch modulo := 4 % 2; modulo {
 	case 0:
 		fmt.Println("Es Par")
 	default:
