@@ -1,20 +1,18 @@
 package main
 
-import "fmt"
-
-type car struct {
-	brand string
-	year  int
-}
+import (
+	pk "curso_golang_platzi/src/mypackage"
+	"fmt"
+)
 
 func main() {
-	//Instanciacion de un objeto, con ambos parametros
-	myCar := car{brand: "Ford", year: 2020}
+	//se llama a Car public, el car private aparecera como que no existe
+	var myCar pk.CarPublic
+	myCar.Brand = "Ferrari"
+	myCar.Year = 2020
 	fmt.Println(myCar)
 
-	//Instanciacion alternativa, al no ingresar todos los parametros del objeto, este quedara en su zero value
-	//en este ejemplo: no se ha indicado el valor de year, por lo cual ese parametro queda en cero.
-	var otherCar car
-	otherCar.brand = "Ferrari"
-	fmt.Println(otherCar)
+	pk.PrintMessage("Hola Platzi")
+
+	//Aqui ya no aparece la funcion private (printMessage1), notar que empieza con minusculas
 }
