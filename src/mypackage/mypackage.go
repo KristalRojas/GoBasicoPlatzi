@@ -2,9 +2,8 @@ package mypackage
 
 import "fmt"
 
-//Para declarar un tipo de dato puublico, se debe poner la primera letra del tipo en mayuscula, se debe agregar
+//Para declarar un tipo de dato publico, se debe poner la primera letra del tipo en mayuscula, se debe agregar
 //encima del tipo un comentario, que diga que es tipo publico, si el tipo comienza por minuscula, esta es private
-//(Al parecer el comentario arriba de la variable Publica ya no es necesario) ver en PrintMessage(message string)
 
 //CarPublic Car con acceso publico (Solo la primera parte es necesaria(?))
 type CarPublic struct {
