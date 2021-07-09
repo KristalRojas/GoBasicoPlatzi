@@ -3,25 +3,31 @@ package main
 import "fmt"
 
 func main() {
-	//Defer
-	//Defer es el keyword que va a ejecutar la ultima funcion antes de que todo muera (referido al main o
-	// equivalente), sirve para usar close.Connection en bd, la buena practica es no mas de un defer por funcion
-	defer fmt.Println("Hola")
-	fmt.Println("Mundo")
+	//Array es inmutable
+	//Array
+	var array [4]int
+	array[0] = 1
+	array[1] = 2
+	fmt.Println(array, len(array), cap(array))
 
-	//Continue y Break
-	for i := 0; i < 10; i++ {
-		fmt.Println(i)
-		//Continue
-		//Cuando usarlo? es para cuando quieras que siga el for
-		if i == 2 {
-			fmt.Println("Es 2")
-			continue
-		}
-		//Break
-		//Sirve para romper el ciclo de for
-		if i == 8 {
-			break
-		}
-	}
+	//Slice si puede mutar
+	//Slice
+	slice := []int{0, 1, 2, 3, 4, 5, 6}
+	fmt.Println(slice, len(slice), cap(slice))
+
+	//Slicing
+	//Metodos en el slice
+	fmt.Println(slice[0])
+	fmt.Println(slice[:3])
+	fmt.Println(slice[2:4])
+	fmt.Println(slice[4:])
+
+	//Append
+	slice = append(slice, 7)
+	fmt.Println(slice)
+
+	//Append nueva lista
+	newSlice := []int{8, 9, 10}
+	slice = append(slice, newSlice...)
+	fmt.Println(slice)
 }
