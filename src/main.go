@@ -2,34 +2,19 @@ package main
 
 import "fmt"
 
+type car struct {
+	brand string
+	year  int
+}
+
 func main() {
+	//Instanciacion de un objeto, con ambos parametros
+	myCar := car{brand: "Ford", year: 2020}
+	fmt.Println(myCar)
 
-	//Maps (El map seria una lista de llave valor, en python seria un diccionario)
-	//Creacion de map (make se utiliza para crear distintos tipos de variables)
-	m := make(map[string]int)
-
-	m["Jose"] = 14
-	m["Pepito"] = 20
-
-	fmt.Println(m)
-
-	//Recorrer map
-	for key, value := range m {
-		fmt.Println(key, value)
-	}
-
-	//Encontrar valor | retorna 14 que es la key de Jose
-	v := m["Jose"]
-	fmt.Println(v)
-
-	//Encontrar valor que no existe | Este retornara el Zero value del tipo que sea el valor
-	//en este caso value es de tipo int, por lo que retornara cero
-	v = m["Josep"]
-	fmt.Println(v)
-
-	//Para saber si se encuentra la item con la key, agregar una variable seguido de la variable que representa
-	//value, esa variable retornara true o false, segun corresponda
-	v, ok := m["Josep"]
-	fmt.Println(v, ok)
-
+	//Instanciacion alternativa, al no ingresar todos los parametros del objeto, este quedara en su zero value
+	//en este ejemplo: no se ha indicado el valor de year, por lo cual ese parametro queda en cero.
+	var otherCar car
+	otherCar.brand = "Ferrari"
+	fmt.Println(otherCar)
 }
