@@ -1,30 +1,23 @@
 package main
 
-import (
-	"fmt"
-	"sync"
-	"time"
-)
+import "fmt"
 
-func say(text string, wg *sync.WaitGroup) {
-	defer wg.Done()
-
-	fmt.Println(text)
+//Como buena practica, al usar un channel en los parametros de una funcion, se debe indicar si el parametro sera de entrada o de salida
+//Ej: channel sin indicacion: "func say(text string, c chan string) {"
+//Ej: channel indica que sera de entrada: "func say(text string, c chan<- string) {"
+//Ej: channel indica que sera de salida: "func say(text string, c <-chan string) {"
+func say(text string, c chan<- string) {
+	c <- text //c<-, es utiliza para almacenar un valor dentro del channel, este caso almacena el valor de text
 }
 
 func main() {
-	var wg sync.WaitGroup //WaitGruop acumula un conjunto de goroutines y las va liberando de a poco
+	//Creacion de un Channel, es buena practica señalar la cantidad de datos que almacenara el channel
+	//en este caso, el 1 quiere decir que almacenara hasta 1 dato, en caso de no asignar un numero, el valor sera dinamico
+	c := make(chan string, 1)
 
 	fmt.Println("Hello")
-	wg.Add(1) //Se agrega una goroutine
 
-	go say("world", &wg) //Keyword go, quiere decir que esa funcino correra de forma concurrente
+	go say("Bye", c) //recordar que go, indica goroutine
 
-	wg.Wait() //Aqui se le dice que espere, hasta que las goroutine hayan sido disparadas
-
-	go func(text string) {
-		fmt.Println(text)
-	}("Adios")
-
-	time.Sleep(time.Second * 1)
+	fmt.Println(<-c) //Al usar <-c, se esta extrayendo el valor guardado del channel
 }
