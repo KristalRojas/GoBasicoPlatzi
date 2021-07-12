@@ -1,41 +1,30 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+	"time"
+)
 
-type figuras2D interface {
-	area() float64
+func say(text string, wg *sync.WaitGroup) {
+	defer wg.Done()
+
+	fmt.Println(text)
 }
 
-type cuadrado struct {
-	base float64
-}
-
-type rectangulo struct {
-	base   float64
-	altura float64
-}
-
-func (c cuadrado) area() float64 {
-	return c.base * c.base
-}
-
-func (r rectangulo) area() float64 {
-	return r.base * r.altura
-}
-
-func calcular(f figuras2D) {
-	fmt.Println("Area: ", f.area())
-}
 func main() {
-	myCuadrado := cuadrado{base: 2}
-	myRectangulo := rectangulo{base: 2, altura: 4}
+	var wg sync.WaitGroup //WaitGruop acumula un conjunto de goroutines y las va liberando de a poco
 
-	calcular(myCuadrado)
-	calcular(myRectangulo)
+	fmt.Println("Hello")
+	wg.Add(1) //Se agrega una goroutine
 
-	//Lista de interfaces
-	//Se puede utilizar en caso de requerir un listado con distintos tipos de datos
-	myInterface := []interface{}{"Hola", 12, 4.90, true}
-	fmt.Println(myInterface...)
+	go say("world", &wg) //Keyword go, quiere decir que esa funcino correra de forma concurrente
 
+	wg.Wait() //Aqui se le dice que espere, hasta que las goroutine hayan sido disparadas
+
+	go func(text string) {
+		fmt.Println(text)
+	}("Adios")
+
+	time.Sleep(time.Second * 1)
 }
